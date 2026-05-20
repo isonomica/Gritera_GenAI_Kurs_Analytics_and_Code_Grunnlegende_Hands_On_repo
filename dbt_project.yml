@@ -10,6 +10,11 @@ analysis-paths: ["analyses"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
+models:
+  kurs_dataplattform:
+    exercises:
+      +enabled: false
+
 clean-targets:
   - "target"
   - "dbt_packages"
