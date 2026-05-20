@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: int_complaints_enriched
+    description: >
+      Beriket klagemodell. Kobler klager mot kundeinformasjon (navn, e-post, region)
+      og produktinformasjon fra tilhørende ordre (produktnavn, kategorier, antall linjer).
+      Én rad per klage.
+    columns:
+      - name: complaint_id
+        description: Unik identifikator for klagen.
+        tests:
+          - unique
+          - not_null
+      - name: complaint_category
+        description: Kategori for klagen (Leveranse, Kvalitet, Faktura).
+      - name: complaint_description
+        description: Fritekstbeskrivelse av hva klagen gjelder.
+      - name: complaint_status
+        description: Nåværende status for klagen (open eller resolved).
+      - name: complaint_created_at
+        description: Dato klagen ble registrert.
+      - name: complaint_resolved_at
+        description: Dato klagen ble løst. Null hvis klagen fortsatt er åpen.
+      - name: customer_name
+        description: Fullt navn på kunden som registrerte klagen.
+      - name: customer_email
+        description: E-postadresse til kunden.
+      - name: customer_region
+        description: Geografisk region kunden tilhører.
+      - name: order_date
+        description: Dato ordren klagen gjelder ble lagt.
+      - name: order_status
+        description: Status på ordren klagen gjelder (completed, returned, pending).
+      - name: total_amount_nok
+        description: Totalbeløp for ordren i NOK.
+      - name: product_names
+        description: Kommaseparert liste over produktnavn i ordren.
+      - name: product_categories
+        description: Kommaseparert liste over produktkategorier i ordren.
+      - name: item_count
+        description: Antall unike ordrelinjer i ordren.

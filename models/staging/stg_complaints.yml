@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_complaints
+    description: Staging-modell for kundeklager. Én rad per klage med rensede datoer.
+    columns:
+      - name: complaint_id
+        description: Unik identifikator for klagen.
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Referanse til kunden som registrerte klagen.
+        tests:
+          - not_null
+      - name: order_id
+        description: Referanse til ordren klagen gjelder.
+        tests:
+          - not_null
+      - name: category
+        description: Kategori for klagen (Leveranse, Kvalitet eller Faktura).
+        tests:
+          - accepted_values:
+              values: ['Leveranse', 'Kvalitet', 'Faktura']
+      - name: description
+        description: Fritekstbeskrivelse av klagen.
+      - name: status
+        description: Nåværende status for klagen.
+        tests:
+          - accepted_values:
+              values: ['open', 'resolved']
+      - name: created_at
+        description: Dato klagen ble registrert.
+        tests:
+          - not_null
+      - name: resolved_at
+        description: Dato klagen ble løst. Null hvis klagen fortsatt er åpen.

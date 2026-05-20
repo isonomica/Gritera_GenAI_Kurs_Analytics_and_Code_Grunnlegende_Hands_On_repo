@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: mart_complaint_summary
+    description: >
+      Månedlig oppsummering av klager per kategori. Én rad per måned og klagekategori.
+      Brukes til å følge utvikling i klageandel, behandlingstid og løsningsgrad over tid.
+    columns:
+      - name: complaint_month
+        description: Første dag i måneden klagene ble registrert (date_trunc til måned).
+        tests:
+          - not_null
+      - name: complaint_category
+        description: Klagekategori (Leveranse, Kvalitet, Faktura).
+        tests:
+          - not_null
+      - name: total_complaints
+        description: Totalt antall klager registrert i denne måneden og kategorien.
+        tests:
+          - not_null
+      - name: resolved_complaints
+        description: Antall klager med status 'resolved' i denne måneden og kategorien.
+      - name: avg_resolution_days
+        description: Gjennomsnittlig antall dager fra klage ble registrert til den ble løst. Null hvis ingen klager er løst.
+      - name: pct_resolved
+        description: Prosentandel løste klager av totalt antall klager i perioden (0–100).
